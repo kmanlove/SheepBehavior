@@ -2,15 +2,15 @@
 #-- code for preliminary analysis of bhs contact patterns from 2014 --#
 #---------------------------------------------------------------------#
 
-bb <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/FocalFollows/CleanBlackButteFollows_090214.csv", header = T)
-aso <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/FocalFollows/CleanAsotinFollows_090214.csv", header = T)
+bb <- read.csv("./data/CleanBlackButteFollows_090214.csv", header = T)
+aso <- read.csv("./data/CleanAsotinFollows_090214.csv", header = T)
 
 length(levels(bb$SessionID))
 length(levels(aso$SessionID))
 length(levels(aso$ID))
 
-aso.relocs <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/RelocationData/Asotin_Locations_Clean.csv", header = T, sep = "\t")
-bb.relocs <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/RelocationData/BlackButte_Locations_Clean.csv", header = T, sep = "\t")
+aso.relocs <- read.csv("./data/Asotin_Locations_Clean.csv", header = T, sep = "\t")
+bb.relocs <- read.csv("./data/BlackButte_Locations_Clean.csv", header = T, sep = "\t")
 dim(aso.relocs)
 dim(bb.relocs)
 
@@ -78,5 +78,4 @@ axis(side = 1, at = c(120, 150, 181), labels = c("May 01", "June 01", "July 01")
 leg.text <- c("Black Butte", "Asotin")
 legend("topright", leg.text, col = c("black", "red"), pch = c(16, 1), bty = "n")
 
-#-- apparent change in investment late in epidemic at BB -- is that spurious? --#
 
