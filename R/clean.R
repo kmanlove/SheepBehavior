@@ -5,8 +5,16 @@
 # relocations to associations
 source("./R/StaticNetworkAssocMat.R")
 
+# follows
+source("./R/CleanRawFollows.R")
+
 # scans
 source("./R/CleanRawScans.R")
+
+# clean relocations
+
+# clean follows
+clean.follows <- CleanRawFollows(follows)
 
 # clean scans
 # add time fields to raw scans
