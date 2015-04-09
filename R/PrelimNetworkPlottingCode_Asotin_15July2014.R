@@ -25,27 +25,27 @@ data.subsets[[4]] <- subset(data, Year == 2014 & JulianDate <= 150)
 data.subsets[[5]] <- subset(data, Year == 2014 & JulianDate >= 151 & JulianDate <= 180)
 data.subsets[[6]] <- subset(data, Year == 2014 & JulianDate >= 181)
 
-clique.community <- function(graph, k){
-  clq <- cliques(graph, min = k, max = k)
-  edges <- c()
-  for(i in seq_along(clq)){
-    for(j in seq_along(clq)){
-      if((length(unique(c(clq[[i]], clq[[j]]))) == k + 1)){
-        edges <- c(edges, c(i, j) )
-      }
-    }
-  }
-  clq.graph <- simplify(graph(edges))
-  V(clq.graph)$name <- seq_len(vcount(clq.graph))
-  comps <- decompose.graph(clq.graph)
-  lapply(comps, function(x){
-    unique(unlist(clq[V(x)$name]))
-  })
-}
-clique.test.fun <- function(x){
-  y <- i %in% x 
-  return(y)
-}
+# clique.community <- function(graph, k){
+#   clq <- cliques(graph, min = k, max = k)
+#   edges <- c()
+#   for(i in seq_along(clq)){
+#     for(j in seq_along(clq)){
+#       if((length(unique(c(clq[[i]], clq[[j]]))) == k + 1)){
+#         edges <- c(edges, c(i, j) )
+#       }
+#     }
+#   }
+#   clq.graph <- simplify(graph(edges))
+#   V(clq.graph)$name <- seq_len(vcount(clq.graph))
+#   comps <- decompose.graph(clq.graph)
+#   lapply(comps, function(x){
+#     unique(unlist(clq[V(x)$name]))
+#   })
+# }
+# clique.test.fun <- function(x){
+#   y <- i %in% x 
+#   return(y)
+# }
 
 edgeweight.min <- .1
 pop.id <- "Summer2014"
@@ -163,7 +163,7 @@ for(i in 1:6){
 }
 
 #-- source in functions and packages to build association matrix --#
-source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/Plots/NetworkPlottingSourceFunctions_30Nov2013.R")
+# source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/Plots/NetworkPlottingSourceFunctions_30Nov2013.R")
 
 #-- build in lamb status by hand --#
 ewes.without.lambs.2014 <- c("14AS01", "13AS05", "14AS44", "14AS25", "14AS22", "14AS51", "14AS15", "14AS18", "14AS20", "14AS21", "14AS45")
