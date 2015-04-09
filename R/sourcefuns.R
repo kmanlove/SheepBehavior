@@ -5,3 +5,4 @@ source("./R/NetworkPlottingSourceFunctions.R")
 # plotting functions
 source("./R/PlotScanTimeByDateByPop.R")
 source("./R/PlotActivityByContacts.R")
+source("./R/PlotActivityByDemogGrp.R")
