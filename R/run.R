@@ -13,4 +13,4 @@ source("./R/sourcefuns.R")
 # Build plots
 PlotScanTimeByDateByPop(data.in = clean.scans)
 PlotActivityByContacts(follows.in = clean.follows, scans.in = clean.scans)
-
+PlotActivityByDemogGrp(data.in = clean.scans)
