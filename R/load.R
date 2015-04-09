@@ -12,3 +12,4 @@ scans <- read.csv("~/Dropbox/HCSummer2014/ScanSamples/ScansToParse_150324.csv", 
 
 # require necessary packages
 require(igraph)
+require(assortnet)
