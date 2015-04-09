@@ -5,7 +5,7 @@ source("./R/load.R")
 
 source("./R/clean.R")
 # cleans all datasets
-# datasets named: clean.scans, clean.follows, clean.relocs
+# datasets named: clean.scans, clean.follows, follows.sess.data, clean.relocs
 
 source("./R/sourcefuns.R")
 # sources in all analysis functions
@@ -18,6 +18,9 @@ par(mfrow = c(1, 1))
 plot(aso.2014.graph[[1]][[1]])
 # some plotting code still in PrelimNetworkPlottingCode_Asotin_15July2014.R
 
+# groupsize by contact rate
+DirectContactsByGrpsz(follow.sess.data)
+PlotContactsByTimeAge(follow.sess.data)
 
 # Build Scan plots
 PlotScanTimeByDateByPop(data.in = clean.scans)
