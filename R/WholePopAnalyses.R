@@ -20,11 +20,11 @@
 # #-- source in function to build association matrix --#
 # source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/DataCleaning/RelocationsToNetworks/StaticNetworkAssocMat.R")
 
-edgelists.nozeros <- edgelists <- inds <- output.info <- data.subsets <- list(NA, 1)
-#-- build list of relevant data subsets.
-data.subsets[[1]] <- data
-data.subsets[[2]] <- subset(data, Year == 2013)
-data.subsets[[3]] <- subset(data, Year == 2014)
+# edgelists.nozeros <- edgelists <- inds <- output.info <- data.subsets <- list(NA, 1)
+# #-- build list of relevant data subsets.
+# data.subsets[[1]] <- data
+# data.subsets[[2]] <- subset(data, Year == 2013)
+# data.subsets[[3]] <- subset(data, Year == 2014)
 
 
 # clique.community <- function(graph, k){
@@ -49,9 +49,9 @@ data.subsets[[3]] <- subset(data, Year == 2014)
 #   return(y)
 # }
 
-edgeweight.min <- .1
-pop.id <- "Summer2014"
-year.id <- "2014"
+# edgeweight.min <- .1
+# pop.id <- "Summer2014"
+# year.id <- "2014"
 #for(i in 1:length(data.subsets)){
 # for(i in 1:6){
 #   if(dim(data.subsets[[i]])[1] == 0 | length(levels(factor(data.subsets[[i]]$EWEID))) == 1){
@@ -167,33 +167,33 @@ year.id <- "2014"
 #-- source in functions and packages to build association matrix --#
 # source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/Plots/NetworkPlottingSourceFunctions_30Nov2013.R")
 
-#-- build in lamb status by hand --#
-ewes.without.lambs.2014 <- c("14AS01", "13AS05", "14AS44", "14AS25", "14AS22")
-yearlings.2014 <- c("14AS51", "14AS15", "14AS18", "14AS20", "14AS21", "14AS45")
+# #-- build in lamb status by hand --#
+# ewes.without.lambs.2014 <- c("14AS01", "13AS05", "14AS44", "14AS25", "14AS22")
+# yearlings.2014 <- c("14AS51", "14AS15", "14AS18", "14AS20", "14AS21", "14AS45")
+# 
+# data.subsets[[1]]$LambStatus <- rep(NA, dim(data.subsets[[1]])[1])
+# for(i in 1:dim(data.subsets[[1]])[1]){
+#   data.subsets[[1]]$LambStatus[i] <- ifelse(data.subsets[[1]]$EWEID[i] %in% ewes.without.lambs, "died", "censored")  
+# }
+# 
+# data.subsets[[2]]$LambStatus <- rep(NA, dim(data.subsets[[2]])[1])
+# for(i in 1:dim(data.subsets[[2]])[1]){
+#   data.subsets[[2]]$LambStatus[i] <- ifelse(data.subsets[[2]]$EWEID[i] %in% ewes.without.lambs, "died", "censored")  
+# }
+# 
+# data.subsets[[3]]$LambStatus <- rep(NA, dim(data.subsets[[3]])[1])
+# for(i in 1:dim(data.subsets[[3]])[1]){
+#   data.subsets[[3]]$LambStatus[i] <- ifelse(data.subsets[[3]]$EWEID[i] %in% ewes.without.lambs.2014, "died", "censored")  
+# }
+# 
+# #-- build network --#
+# edgeweight.min <- .1
+# graph.2014 <- BuildGraph(data.subsets = data.subsets, edgeweight.min = edgeweight.min, index = 3)
+# adj.2014 <- get.adjacency(graph.2014[[1]])
+# adj.2014.labels <- ifelse(V(graph.2014[[1]])$name %in% ewes.without.lambs.2014 == T, "EweWithoutLamb", 
+#                           ifelse(V(graph.2014[[1]])$name %in% yearlings.2014 == T, "Yearling", "EweWithLamb"))
 
-data.subsets[[1]]$LambStatus <- rep(NA, dim(data.subsets[[1]])[1])
-for(i in 1:dim(data.subsets[[1]])[1]){
-  data.subsets[[1]]$LambStatus[i] <- ifelse(data.subsets[[1]]$EWEID[i] %in% ewes.without.lambs, "died", "censored")  
-}
-
-data.subsets[[2]]$LambStatus <- rep(NA, dim(data.subsets[[2]])[1])
-for(i in 1:dim(data.subsets[[2]])[1]){
-  data.subsets[[2]]$LambStatus[i] <- ifelse(data.subsets[[2]]$EWEID[i] %in% ewes.without.lambs, "died", "censored")  
-}
-
-data.subsets[[3]]$LambStatus <- rep(NA, dim(data.subsets[[3]])[1])
-for(i in 1:dim(data.subsets[[3]])[1]){
-  data.subsets[[3]]$LambStatus[i] <- ifelse(data.subsets[[3]]$EWEID[i] %in% ewes.without.lambs.2014, "died", "censored")  
-}
-
-#-- build network --#
-edgeweight.min <- .1
-graph.2014 <- BuildGraph(data.subsets = data.subsets, edgeweight.min = edgeweight.min, index = 3)
-adj.2014 <- get.adjacency(graph.2014[[1]])
-adj.2014.labels <- ifelse(V(graph.2014[[1]])$name %in% ewes.without.lambs.2014 == T, "EweWithoutLamb", 
-                          ifelse(V(graph.2014[[1]])$name %in% yearlings.2014 == T, "Yearling", "EweWithLamb"))
-
-assort.obj <- assortment.discrete(adj.2014, types = adj.2014.labels, weighted = T, SE = TRUE, M = 100)
-assort.obj$r
-assort.obj$SE
-round(assort.obj$mixing_matrix, 3)
+# assort.obj <- assortment.discrete(adj.2014, types = adj.2014.labels, weighted = T, SE = TRUE, M = 100)
+# assort.obj$r
+# assort.obj$SE
+# round(assort.obj$mixing_matrix, 3)
