@@ -8,3 +8,7 @@ source("./R/BuildAsoRelocNetworks.R")
 source("./R/PlotScanTimeByDateByPop.R")
 source("./R/PlotActivityByContacts.R")
 source("./R/PlotActivityByDemogGrp.R")
+source("./R/PlotContactsByTimeAge.R")
+
+# analysis functions
+source("./R/DirectContactsByGrpsz.R")
