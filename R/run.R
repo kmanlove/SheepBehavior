@@ -16,8 +16,11 @@ yearlings.2014 <- c("14AS51", "14AS15", "14AS18", "14AS20", "14AS21", "14AS45")
 aso.2014.graph <- BuildAsoRelocNetworks(clean.relocs, ewes.without.lambs = ewes.without.lambs.2014, yearlings = yearlings.2014)
 par(mfrow = c(1, 1))
 plot(aso.2014.graph[[1]][[1]])
+# some plotting code still in PrelimNetworkPlottingCode_Asotin_15July2014.R
+
 
 # Build Scan plots
 PlotScanTimeByDateByPop(data.in = clean.scans)
 PlotActivityByContacts(follows.in = clean.follows, scans.in = clean.scans)
 PlotActivityByDemogGrp(data.in = clean.scans)
+# a few lines of code still in ScanSampleSetUp.R
