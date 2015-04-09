@@ -4,6 +4,7 @@
 
 # relocations to associations
 source("./R/StaticNetworkAssocMat.R")
+source("./R/CleanRawRelocs.R")
 
 # follows
 source("./R/CleanRawFollows.R")
@@ -12,6 +13,7 @@ source("./R/CleanRawFollows.R")
 source("./R/CleanRawScans.R")
 
 # clean relocations
+clean.relocs <- CleanRawRelocs(aso.locations)
 
 # clean follows
 clean.follows <- CleanRawFollows(follows)
