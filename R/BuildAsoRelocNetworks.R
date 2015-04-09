@@ -1,4 +1,17 @@
 BuildAsoRelocNetworks <- function(data, ewes.without.lambs, yearlings) {
+  # function that builds Asotin networks and calculated assortativity
+  #
+  # Args:
+  #
+  # data = clean relocation data
+  # ewes.without.lambs = character vector of all animal IDs for ewes who don't have lambs
+  # years = character vector of animalIDs for all yearlings
+  #
+  # Return:
+  # 
+  # graph.out = list of [[1]] graph object and [[2]] weighted edgelist
+  # assort.mat = assortativity matrix as returns by assortnet, rounded to 3 decimals
+  #
   edgelists.nozeros <- edgelists <- inds <- output.info <- data.subsets <- list(NA, 1)
   #-- build list of relevant data subsets.
   data.subsets[[1]] <- data
