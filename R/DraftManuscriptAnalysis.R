@@ -25,55 +25,55 @@
 #-- Qu 1: Does direct contact pattern scale with group size? --#
 #--------------------------------------------------------------#
 # build session-level data.
-sessionID <- sessionGrpSz <- sessionDate <- TotContactDur <- LLContactDur <- ELContactDur <- ELContactNotBedded <- pop <- rep(NA, length(levels(factor(aso.follows$SessionID))))
-for(i in 1:length(sessionID))
-{
-#  k <- subset(full.follows, as.character(SessionID) == as.character(levels(factor(aso.follows$SessionID)))[i])
-#  sessionID[i] <- as.character(levels(factor(aso.follows$SessionID)))[i]
-  k <- subset(full.follows, as.character(SessionID) == as.character(levels(factor(full.follows$SessionID)))[i])
-  sessionID[i] <- as.character(levels(factor(full.follows$SessionID)))[i]
-  sessionGrpSz[i] <- k$Grpsz[1]
-  sessionDate[i] <- k$JulianDate[1]
-  pop[i] <- k$Population[1]
-  TotContactDur[i] <- sum(na.omit(c(k$ELNurseDuration,  
-                          k$EL.Nose.to.nose.Duration,
-                          k$EL.Body.Contact.Duration,
-                          k$EL.Bedded.Duration,
-                          k$LL.Body.Duration,
-                          k$LL.Nose.to.nose.Duration,
-                          k$EE.Body.Duration,
-                          k$YY.BC.Duration,
-                          k$YY.N.to.N.Duration,
-                          k$EY.BC.Duration,
-                          k$LY.BC.Duration,
-                          k$LY.N.to.N.Duration
-                          )))
-  LLContactDur[i] <- sum(na.omit(c(k$LL.Body.Duration,
-                                    k$LL.Nose.to.nose.Duration
-  )))
-  ELContactDur[i] <- sum(na.omit(c(k$ELNurseDuration,  
-                                   k$EL.Nose.to.nose.Duration,
-                                   k$EL.Body.Contact.Duration,
-                                   k$EL.Bedded.Duration
-  )))
-  ELContactNotBedded[i] <- sum(na.omit(c(k$ELNurseDuration,  
-                                   k$EL.Nose.to.nose.Duration,
-                                   k$EL.Body.Contact.Duration
-  )))
-  
-}
-
-par(mfrow = c(1, 3))
-plot(log(TotContactDur + 1) ~ sessionGrpSz, ylab = "Log(Total contact duration + 1)", xlab = "Group size")
-lines(lowess(log(TotContactDur + 1) ~ sessionGrpSz))
-plot(log(ELContactDur + 1) ~ sessionGrpSz, ylab = "Log(EL contact duration + 1)", xlab = "Group size")
-lines(lowess(log(ELContactDur + 1) ~ sessionGrpSz))
-plot(log(LLContactDur + 1) ~ sessionGrpSz, ylab = "Log(LL contact duration + 1)", xlab = "Group size")
-lines(lowess(log(LLContactDur + 1) ~ sessionGrpSz))
-test.fit.linear <- glm(TotContactDur ~ sessionGrpSz, family = "poisson")
-test.fit.quad <- glm(TotContactDur ~ sessionGrpSz + I(sessionGrpSz ^ 2), family = "poisson")
-anova(test.fit.linear, test.fit.quad, test = "F")
-  # highly significant improvement when including quadratic term. 
+# sessionID <- sessionGrpSz <- sessionDate <- TotContactDur <- LLContactDur <- ELContactDur <- ELContactNotBedded <- pop <- rep(NA, length(levels(factor(aso.follows$SessionID))))
+# for(i in 1:length(sessionID))
+# {
+# #  k <- subset(full.follows, as.character(SessionID) == as.character(levels(factor(aso.follows$SessionID)))[i])
+# #  sessionID[i] <- as.character(levels(factor(aso.follows$SessionID)))[i]
+#   k <- subset(full.follows, as.character(SessionID) == as.character(levels(factor(full.follows$SessionID)))[i])
+#   sessionID[i] <- as.character(levels(factor(full.follows$SessionID)))[i]
+#   sessionGrpSz[i] <- k$Grpsz[1]
+#   sessionDate[i] <- k$JulianDate[1]
+#   pop[i] <- k$Population[1]
+#   TotContactDur[i] <- sum(na.omit(c(k$ELNurseDuration,  
+#                           k$EL.Nose.to.nose.Duration,
+#                           k$EL.Body.Contact.Duration,
+#                           k$EL.Bedded.Duration,
+#                           k$LL.Body.Duration,
+#                           k$LL.Nose.to.nose.Duration,
+#                           k$EE.Body.Duration,
+#                           k$YY.BC.Duration,
+#                           k$YY.N.to.N.Duration,
+#                           k$EY.BC.Duration,
+#                           k$LY.BC.Duration,
+#                           k$LY.N.to.N.Duration
+#                           )))
+#   LLContactDur[i] <- sum(na.omit(c(k$LL.Body.Duration,
+#                                     k$LL.Nose.to.nose.Duration
+#   )))
+#   ELContactDur[i] <- sum(na.omit(c(k$ELNurseDuration,  
+#                                    k$EL.Nose.to.nose.Duration,
+#                                    k$EL.Body.Contact.Duration,
+#                                    k$EL.Bedded.Duration
+#   )))
+#   ELContactNotBedded[i] <- sum(na.omit(c(k$ELNurseDuration,  
+#                                    k$EL.Nose.to.nose.Duration,
+#                                    k$EL.Body.Contact.Duration
+#   )))
+#   
+# }
+# 
+# par(mfrow = c(1, 3))
+# plot(log(TotContactDur + 1) ~ sessionGrpSz, ylab = "Log(Total contact duration + 1)", xlab = "Group size")
+# lines(lowess(log(TotContactDur + 1) ~ sessionGrpSz))
+# plot(log(ELContactDur + 1) ~ sessionGrpSz, ylab = "Log(EL contact duration + 1)", xlab = "Group size")
+# lines(lowess(log(ELContactDur + 1) ~ sessionGrpSz))
+# plot(log(LLContactDur + 1) ~ sessionGrpSz, ylab = "Log(LL contact duration + 1)", xlab = "Group size")
+# lines(lowess(log(LLContactDur + 1) ~ sessionGrpSz))
+# test.fit.linear <- glm(TotContactDur ~ sessionGrpSz, family = "poisson")
+# test.fit.quad <- glm(TotContactDur ~ sessionGrpSz + I(sessionGrpSz ^ 2), family = "poisson")
+# anova(test.fit.linear, test.fit.quad, test = "F")
+#   # highly significant improvement when including quadratic term. 
   # probably should be a zip...
   # need to check on Black Butte as well. 
 
@@ -85,37 +85,37 @@ lines(lowess(log(aso.nonzerolambs$LL.Body.Duration + aso.nonzerolambs$EL.Body.Co
 
 # what about degree -- does degree (in terms of # different animals contacted) change with groupsize?
 
-#---------------------------------------------------------#
-#-- Qu 2: How do contact patterns change with time/age? --#
-#---------------------------------------------------------#
-# group sizes
-par(mfrow = c(1, 2))
-plot(bb.follows$Grpsz ~ bb.follows$JulianDate, ylim = c(0, 40), xlim = c(120, 200), xlab = "Time", ylab = "Total group size", xaxt = "n", col = rgb(0, 0, 0, .1, names = NULL, maxColorValue = 1))
-lines(lowess(bb.follows$Grpsz ~ bb.follows$JulianDate), lwd = 2)
-points(aso.follows$Grpsz ~ aso.follows$JulianDate, col = rgb(1, 0, 0, .1, names = NULL, maxColorValue = 1), pch = 16, cex = .6)
-lines(lowess(aso.follows$Grpsz ~ aso.follows$JulianDate), col = "red", lwd = 3, lty = 2)
-axis(side = 1, at = c(120, 150, 181), labels = c("May 01", "June 01", "July 01"))
-leg.text <- c("Black Butte", "Asotin")
-legend("topleft", bty = "n", leg.text, col = c("black", "red"), pch = c(1, 16), lty = c(1, 2), lwd = c(2, 2))
-
-plot((bb.follows$Ewes + bb.follows$YrEwes) ~ bb.follows$JulianDate, ylim = c(0, 25), xlim = c(120, 200), xlab = "Time", ylab = "Group size without lambs", xaxt = "n", col = rgb(0, 0, 0, .1, names = NULL, maxColorValue = 1))
-lines(lowess((bb.follows$Ewes + bb.follows$YrEwes) ~ bb.follows$JulianDate), lwd = 2)
-points((aso.follows$Ewes + aso.follows$YrEwes) ~ aso.follows$JulianDate, col = rgb(1, 0, 0, .1, names = NULL, maxColorValue = 1), pch = 16, cex = .6)
-lines(lowess((aso.follows$Ewes + aso.follows$YrEwes) ~ aso.follows$JulianDate), lty = 2, col = "red", lwd = 3)
-axis(side = 1, at = c(120, 150, 181), labels = c("May 01", "June 01", "July 01"))
-legend("topleft", bty = "n", leg.text, col = c("black", "red"), pch = c(1, 16), lty = c(1, 2), lwd = c(2, 2))
-
-par(mfrow = c(1, 4))
-plot((TotContactDur + 1) ~ sessionDate, ylab = "Total contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
-lines(lowess((TotContactDur + 1) ~ sessionDate))
-plot((ELContactDur + 1) ~ sessionDate, ylab = "EL contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
-lines(lowess((ELContactDur + 1) ~ sessionDate))
-plot((ELContactNotBedded + 1) ~ sessionDate, ylab = "EL contact duration (not bedded)", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
-lines(lowess((ELContactNotBedded + 1) ~ sessionDate))
-plot((LLContactDur + 1) ~ sessionDate, ylab = "LL contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
-lines(lowess((LLContactDur + 1) ~ sessionDate))
-
-
+# #---------------------------------------------------------#
+# #-- Qu 2: How do contact patterns change with time/age? --#
+# #---------------------------------------------------------#
+# # group sizes
+# par(mfrow = c(1, 2))
+# plot(bb.follows$Grpsz ~ bb.follows$JulianDate, ylim = c(0, 40), xlim = c(120, 200), xlab = "Time", ylab = "Total group size", xaxt = "n", col = rgb(0, 0, 0, .1, names = NULL, maxColorValue = 1))
+# lines(lowess(bb.follows$Grpsz ~ bb.follows$JulianDate), lwd = 2)
+# points(aso.follows$Grpsz ~ aso.follows$JulianDate, col = rgb(1, 0, 0, .1, names = NULL, maxColorValue = 1), pch = 16, cex = .6)
+# lines(lowess(aso.follows$Grpsz ~ aso.follows$JulianDate), col = "red", lwd = 3, lty = 2)
+# axis(side = 1, at = c(120, 150, 181), labels = c("May 01", "June 01", "July 01"))
+# leg.text <- c("Black Butte", "Asotin")
+# legend("topleft", bty = "n", leg.text, col = c("black", "red"), pch = c(1, 16), lty = c(1, 2), lwd = c(2, 2))
+# 
+# plot((bb.follows$Ewes + bb.follows$YrEwes) ~ bb.follows$JulianDate, ylim = c(0, 25), xlim = c(120, 200), xlab = "Time", ylab = "Group size without lambs", xaxt = "n", col = rgb(0, 0, 0, .1, names = NULL, maxColorValue = 1))
+# lines(lowess((bb.follows$Ewes + bb.follows$YrEwes) ~ bb.follows$JulianDate), lwd = 2)
+# points((aso.follows$Ewes + aso.follows$YrEwes) ~ aso.follows$JulianDate, col = rgb(1, 0, 0, .1, names = NULL, maxColorValue = 1), pch = 16, cex = .6)
+# lines(lowess((aso.follows$Ewes + aso.follows$YrEwes) ~ aso.follows$JulianDate), lty = 2, col = "red", lwd = 3)
+# axis(side = 1, at = c(120, 150, 181), labels = c("May 01", "June 01", "July 01"))
+# legend("topleft", bty = "n", leg.text, col = c("black", "red"), pch = c(1, 16), lty = c(1, 2), lwd = c(2, 2))
+# 
+# par(mfrow = c(1, 4))
+# plot((TotContactDur + 1) ~ sessionDate, ylab = "Total contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
+# lines(lowess((TotContactDur + 1) ~ sessionDate))
+# plot((ELContactDur + 1) ~ sessionDate, ylab = "EL contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
+# lines(lowess((ELContactDur + 1) ~ sessionDate))
+# plot((ELContactNotBedded + 1) ~ sessionDate, ylab = "EL contact duration (not bedded)", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
+# lines(lowess((ELContactNotBedded + 1) ~ sessionDate))
+# plot((LLContactDur + 1) ~ sessionDate, ylab = "LL contact duration", xlab = "Julian date", log = "y",  ylim = c(1, max(TotContactDur)))
+# lines(lowess((LLContactDur + 1) ~ sessionDate))
+# 
+# 
 
 #---------------------------------------------------------------------------#
 #-- Qu 3: Do activity/contact patterns depend on age/reproductive status? --#
