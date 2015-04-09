@@ -8,6 +8,7 @@ source("./R/CleanRawRelocs.R")
 
 # follows
 source("./R/CleanRawFollows.R")
+source("./R/BuildFollowSessionData.R")
 
 # scans
 source("./R/CleanRawScans.R")
@@ -17,6 +18,7 @@ clean.relocs <- CleanRawRelocs(aso.locations)
 
 # clean follows
 clean.follows <- CleanRawFollows(follows)
+follow.sess.data <- BuildFollowSessionData(clean.follows)
 
 # clean scans
 # add time fields to raw scans
