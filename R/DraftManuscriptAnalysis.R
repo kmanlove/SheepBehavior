@@ -2,24 +2,24 @@
 #-- import data and require necessary packages --------#
 #------------------------------------------------------#
 
-# Absolute path (Bad !!)
-aso.follows <- read.csv("~/work/Kezia/Research/EcologyPapers/SheepBehavior/data/CleanAsotinFollows_090214.csv", header = T)
-
-# Relative path (Good!!)
-aso.follows <- read.csv("./data/CleanAsotinFollows_090214.csv", header = T)
-
-
-
-
-bb.follows <- read.csv("./data/CleanBlackButteFollows_090214.csv", header = T)
-names(bb.follows)[40] <- "YY.N.to.N.Count"
-full.follows <- as.data.frame(rbind(aso.follows, bb.follows))
-names(full.follows) <- names(aso.follows)
-
-aso.relocs <- read.csv("./data/Asotin_Locations_Clean.csv", header = T, sep = "\t")
-bb.relocs <- read.csv("./data/BlackButte_Locations_Clean.csv", header = T, sep = "\t")
-
-raw.scans <- read.csv("./data/AnonymousCompiledScans.csv", header = T)
+# # Absolute path (Bad !!)
+# aso.follows <- read.csv("~/work/Kezia/Research/EcologyPapers/SheepBehavior/data/CleanAsotinFollows_090214.csv", header = T)
+# 
+# # Relative path (Good!!)
+# aso.follows <- read.csv("./data/CleanAsotinFollows_090214.csv", header = T)
+# 
+#
+#
+#
+# bb.follows <- read.csv("./data/CleanBlackButteFollows_090214.csv", header = T)
+# names(bb.follows)[40] <- "YY.N.to.N.Count"
+# full.follows <- as.data.frame(rbind(aso.follows, bb.follows))
+# names(full.follows) <- names(aso.follows)
+# 
+# aso.relocs <- read.csv("./data/Asotin_Locations_Clean.csv", header = T, sep = "\t")
+# bb.relocs <- read.csv("./data/BlackButte_Locations_Clean.csv", header = T, sep = "\t")
+# 
+# raw.scans <- read.csv("./data/AnonymousCompiledScans.csv", header = T)
 
 #--------------------------------------------------------------#
 #-- Qu 1: Does direct contact pattern scale with group size? --#
