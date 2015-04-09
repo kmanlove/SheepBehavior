@@ -1,24 +1,24 @@
 # install.packages("assortnet")
-require(assortnet)
+# require(assortnet)
+# 
+# # build graph adjacency
+# #-- read in 2014 Asotin Relocations --#
+# data <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/RelocationData/AsotinLocationsFinal_20July2014.csv", header = T, sep = "\t")
 
-# build graph adjacency
-#-- read in 2014 Asotin Relocations --#
-data <- read.csv("~/work/Kezia/Research/FieldStudies/HCBighornContactStudies/Data/RelocationData/AsotinLocationsFinal_20July2014.csv", header = T, sep = "\t")
-
-data$UTMN <- data$Longitude
-data$UTME <- data$Latitude
-data$DATE <- data$Date
+# data$UTMN <- data$Longitude
+# data$UTME <- data$Latitude
+# data$DATE <- data$Date
 
 #-- pull out three ram records from Asotin, as well as uncollareds --#
-ram.ids <- c("08AS31", "12AS19", "12AS23", "12AS22", "11AS06", "08AS34", "12AS21", "", "14AS16", "14AS47")
-data <- subset(data, !(EWEID %in% ram.ids))
+# ram.ids <- c("08AS31", "12AS19", "12AS23", "12AS22", "11AS06", "08AS34", "12AS21", "", "14AS16", "14AS47")
+# data <- subset(data, !(EWEID %in% ram.ids))
 
 #sumimvewes <- eweids <- levels(factor(data$EWEID))
 
-require(igraph)
-
-#-- source in function to build association matrix --#
-source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/DataCleaning/RelocationsToNetworks/StaticNetworkAssocMat.R")
+# require(igraph)
+# 
+# #-- source in function to build association matrix --#
+# source("~/work/Kezia/Research/EcologyPapers/ClustersAssocations_V2/ClustersAssociations/Code/DataCleaning/RelocationsToNetworks/StaticNetworkAssocMat.R")
 
 edgelists.nozeros <- edgelists <- inds <- output.info <- data.subsets <- list(NA, 1)
 #-- build list of relevant data subsets.
@@ -27,27 +27,27 @@ data.subsets[[2]] <- subset(data, Year == 2013)
 data.subsets[[3]] <- subset(data, Year == 2014)
 
 
-clique.community <- function(graph, k){
-  clq <- cliques(graph, min = k, max = k)
-  edges <- c()
-  for(i in seq_along(clq)){
-    for(j in seq_along(clq)){
-      if((length(unique(c(clq[[i]], clq[[j]]))) == k + 1)){
-        edges <- c(edges, c(i, j) )
-      }
-    }
-  }
-  clq.graph <- simplify(graph(edges))
-  V(clq.graph)$name <- seq_len(vcount(clq.graph))
-  comps <- decompose.graph(clq.graph)
-  lapply(comps, function(x){
-    unique(unlist(clq[V(x)$name]))
-  })
-}
-clique.test.fun <- function(x){
-  y <- i %in% x 
-  return(y)
-}
+# clique.community <- function(graph, k){
+#   clq <- cliques(graph, min = k, max = k)
+#   edges <- c()
+#   for(i in seq_along(clq)){
+#     for(j in seq_along(clq)){
+#       if((length(unique(c(clq[[i]], clq[[j]]))) == k + 1)){
+#         edges <- c(edges, c(i, j) )
+#       }
+#     }
+#   }
+#   clq.graph <- simplify(graph(edges))
+#   V(clq.graph)$name <- seq_len(vcount(clq.graph))
+#   comps <- decompose.graph(clq.graph)
+#   lapply(comps, function(x){
+#     unique(unlist(clq[V(x)$name]))
+#   })
+# }
+# clique.test.fun <- function(x){
+#   y <- i %in% x 
+#   return(y)
+# }
 
 edgeweight.min <- .1
 pop.id <- "Summer2014"
